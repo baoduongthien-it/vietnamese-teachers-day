@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <script src="./tailwindcss.js"></script>
+    <link rel="stylesheet" href="./font-awesome.css" />
+    <link rel="stylesheet" href="./fonts.css" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "brand-red": "#c0392b",
+              "brand-gold": "#d4af37",
+              cream: "#fdfbf7",
+            },
+            fontFamily: {
+              hand: ['"Dancing Script"', "cursive"],
+              serif: ['"Playfair Display"', "serif"],
+              sans: ['"Quicksand"', "sans-serif"],
+            },
+            animation: {
+              "spin-slow": "spin 8s linear infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .falling-item {
+        position: fixed;
+        top: -10%;
+        z-index: 50;
+        pointer-events: none;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100px) translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      body::-webkit-scrollbar {
+        width: 6px;
+      }
+      body::-webkit-scrollbar-thumb {
+        background-color: #c0392b;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body class="bg-cream text-gray-800 font-sans antialiased overflow-x-hidden">
+    <audio id="bgMusic" loop>
+      <source
+        src="https://www.bensound.com/bensound-music/bensound-memories.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div
+      id="welcomeOverlay"
+      class="fixed inset-0 z-[9999] bg-black/90 flex flex-col items-center justify-center text-white transition-opacity duration-700"
+    >
+      <div class="text-center p-6 animate-float">
+        <div class="text-6xl mb-6 text-brand-red">💌</div>
+        <h2 class="font-hand text-4xl md:text-5xl mb-4">
+          Bạn có một tấm thiệp 20/11
+        </h2>
+        <p class="font-sans text-gray-300 mb-8 text-lg">
+          Gửi đến những người lái đò thầm lặng
+        </p>
+        <button
+          onclick="startExperience()"
+          class="group relative px-8 py-4 bg-brand-red rounded-full text-xl font-bold shadow-[0_0_20px_rgba(192,57,43,0.5)] hover:scale-105 transition-all duration-300"
+        >
+          <span class="mr-2">Mở Thiệp Ngay</span>
+          <i class="fas fa-heart group-hover:animate-ping"></i>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="musicControl"
+      class="fixed bottom-4 right-4 z-40 hidden opacity-0 transition-opacity duration-1000"
+    >
+      <button
+        onclick="toggleMusic()"
+        class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-red text-white shadow-lg flex items-center justify-center border-2 border-white animate-spin-slow"
+      >
+        <i id="musicIcon" class="fas fa-music"></i>
+      </button>
+    </div>
+
+    <main class="relative">
+      <section
+        class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden bg-gradient-to-b from-orange-100 via-cream to-white"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/gplay.png')]"
+        ></div>
+
+        <div class="z-10 max-w-4xl mx-auto mt-10 md:mt-0">
+          <p
+            class="text-brand-red font-hand text-3xl md:text-5xl mb-2 animate-fade-in-down"
+          >
+            Chào mừng ngày
+          </p>
+          <h1
+            class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-gray-900 mb-6 leading-tight"
+          >
+            Nhà Giáo Việt Nam <br />
+            <span
+              class="text-brand-red inline-block transform hover:scale-110 transition-transform duration-500"
+              >20 - 11</span
+            >
+          </h1>
+          <div class="w-32 h-1 bg-brand-gold mx-auto mb-6 rounded-full"></div>
+          <p
+            class="text-md md:text-xl text-gray-600 italic font-serif px-4 md:px-20"
+          >
+            "Dẫu đếm hết sao trời đêm nay, dẫu đếm hết lá mùa thu rơi, nhưng
+            ngàn năm làm sao em đếm hết công ơn người thầy."
+          </p>
+        </div>
+
+        <div
+          onclick="scrollToContent()"
+          class="absolute bottom-8 animate-bounce text-brand-red text-2xl opacity-80 cursor-pointer z-20 p-4 hover:opacity-100 transition-opacity"
+        >
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </section>
+
+      <section
+        id="main-content"
+        class="py-16 md:py-24 px-4 md:px-8 bg-white scroll-mt-10"
+      >
+        <div class="container mx-auto max-w-6xl">
+          <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
+            <div class="w-full md:w-1/2 relative group">
+              <div
+                class="absolute -inset-2 bg-gradient-to-r from-brand-red to-brand-gold rounded-2xl opacity-30 group-hover:opacity-60 blur transition duration-500"
+              ></div>
+              <div
+                class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] md:aspect-[3/4]"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1577896337318-2838d1b16007?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Teacher and Student"
+                  class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110"
+                />
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-6">
+              <div
+                class="inline-block p-3 bg-orange-100 rounded-full text-brand-red text-2xl mb-2"
+              >
+                <i class="fas fa-pen-nib"></i>
+              </div>
+              <h2
+                class="font-serif text-3xl md:text-4xl font-bold text-gray-800"
+              >
+                Tri Ân Người Lái Đò
+              </h2>
+
+              <div
+                class="space-y-4 text-gray-600 text-lg leading-relaxed font-sans text-justify"
+              >
+                <p>
+                  Thầy cô kính mến! Nhân ngày 20/11, chúng em xin gửi ngàn lời
+                  tri ân đến những người cha, người mẹ thứ hai tại mái trường.
+                </p>
+                <p>
+                  Cảm ơn thầy cô đã bao dung với những trò nghịch ngợm, đã kiên
+                  nhẫn với từng bài giảng khó. Mỗi nét phấn trên bảng đen là mồ
+                  hôi, là tâm huyết để xây đắp tương lai cho chúng em.
+                </p>
+              </div>
+
+              <div class="pt-6 border-t border-gray-100">
+                <p class="font-hand text-2xl text-brand-red">
+                  "Chúc thầy cô luôn mạnh khỏe, hạnh phúc và giữ mãi ngọn lửa
+                  đam mê với nghề."
+                </p>
+                <p class="mt-4 font-bold text-gray-900">
+                  - Tập thể lớp kính tặng -
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 bg-orange-50">
+        <div class="container mx-auto px-4">
+          <h3 class="text-center font-serif text-3xl text-brand-red mb-10">
+            Góc Kỷ Niệm
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group"
+            >
+              <div class="overflow-hidden h-56">
+                <img
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <p class="font-hand text-xl text-brand-red">Giờ học hăng say</p>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group"
+            >
+              <div class="overflow-hidden h-56">
+                <img
+                  src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <p class="font-hand text-xl text-brand-red">
+                  Những đóa hoa tươi
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group"
+            >
+              <div class="overflow-hidden h-56">
+                <img
+                  src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <p class="font-hand text-xl text-brand-red">
+                  Tri thức là sức mạnh
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-brand-red text-white py-6 text-center">
+      <p class="font-hand text-2xl">Happy Vietnamese Teachers' Day!</p>
+    </footer>
+
+    <script>
+      const music = document.getElementById("bgMusic");
+      const overlay = document.getElementById("welcomeOverlay");
+      const musicControl = document.getElementById("musicControl");
+      const musicBtn = musicControl.querySelector("button");
+      let isPlaying = false;
+
+      function scrollToContent() {
+        const contentSection = document.getElementById("main-content");
+        contentSection.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function startExperience() {
+        music
+          .play()
+          .then(() => {
+            isPlaying = true;
+          })
+          .catch((e) => console.log(e));
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+          overlay.style.display = "none";
+          musicControl.classList.remove("hidden");
+          setTimeout(() => musicControl.classList.remove("opacity-0"), 100);
+        }, 700);
+        setInterval(createFallingItem, 300);
+      }
+
+      function toggleMusic() {
+        if (isPlaying) {
+          music.pause();
+          musicBtn.classList.remove("animate-spin-slow");
+          musicBtn.innerHTML = '<i class="fas fa-play"></i>';
+        } else {
+          music.play();
+          musicBtn.classList.add("animate-spin-slow");
+          musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+        }
+        isPlaying = !isPlaying;
+      }
+
+      function createFallingItem() {
+        const item = document.createElement("div");
+        item.classList.add("falling-item");
+        const symbols = ["🌸", "🌼", "🍁", "❤️", "✨", "🎓"];
+        item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = Math.random() * 15 + 10 + "px";
+        item.style.animationDuration = Math.random() * 3 + 5 + "s";
+        document.body.appendChild(item);
+        setTimeout(() => item.remove(), 8000);
+      }
+    </script>
+  </body>
+</html>
